@@ -60,6 +60,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
               {username}
               <span className="ml-2 inline-flex items-center justify-center">
                 <Crown className="h-6 w-6 text-yellow-300 drop-shadow-md" />
+                <span className="ml-1 text-white text-lg font-semibold">Hunter</span>
               </span>
             </h1>
             <div className="flex items-center text-white/80 text-sm mt-1">

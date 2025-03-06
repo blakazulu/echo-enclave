@@ -24,7 +24,15 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  // High-quality fallback images from Spotify album covers
+  // Curated playlist images from provided URLs
+  const curatedImages = [
+    "https://mypart.s3.amazonaws.com/curated_playlists_images/fresh_start.webp",
+    "https://mypart.s3.amazonaws.com/curated_playlists_images/entrepreneur_hustle+.webp",
+    "https://mypart.s3.amazonaws.com/curated_playlists_images/gold_mine.webp",
+    "https://mypart.s3.amazonaws.com/curated_playlists_images/back_to_school.webp"
+  ];
+
+  // High-quality fallback images from Spotify album covers (kept as backup)
   const placeholderImages = [
     "https://i.scdn.co/image/ab67616d0000b273533fd0b248052d04e6b732c0",
     "https://i.scdn.co/image/ab67616d0000b2731eb7f3544e11371f29e90329",
@@ -36,13 +44,15 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
     "https://i.scdn.co/image/ab67616d0000b273ca56f17b9e93f4629c036d64"
   ];
 
+  // Use provided covers if available, otherwise use curated images
   // Create a copy of the coverImages array
   const displayCovers = [...coverImages];
   
-  // Fill with placeholders if less than 4
+  // Fill with curated images if less than 4
   while (displayCovers.length < 4) {
-    const randomIndex = Math.floor(Math.random() * placeholderImages.length);
-    displayCovers.push(placeholderImages[randomIndex]);
+    // Use the curated images first, then fall back to placeholders if needed
+    const curatedIndex = displayCovers.length % curatedImages.length;
+    displayCovers.push(curatedImages[curatedIndex]);
   }
 
   return (
