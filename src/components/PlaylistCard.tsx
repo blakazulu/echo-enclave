@@ -24,12 +24,21 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Take up to 4 cover images
-  const displayCovers = coverImages.slice(0, 4);
+  // Default placeholder images from Unsplash
+  const placeholderImages = [
+    "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=500&auto=format&fit=crop&q=60",
+    "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&auto=format&fit=crop&q=60",
+    "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&auto=format&fit=crop&q=60",
+    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format&fit=crop&q=60"
+  ];
+
+  // Take up to 4 cover images, or use placeholder images if needed
+  const displayCovers = [...coverImages];
   
   // Fill with placeholders if less than 4
   while (displayCovers.length < 4) {
-    displayCovers.push('/placeholder.svg');
+    const randomIndex = Math.floor(Math.random() * placeholderImages.length);
+    displayCovers.push(placeholderImages[randomIndex]);
   }
 
   return (
