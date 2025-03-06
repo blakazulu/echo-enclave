@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -12,7 +11,6 @@ import EmptyState from '@/components/EmptyState';
 import { useToast } from '@/hooks/use-toast';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-// Mock data for the profile page
 const mockPlaylists = [
   {
     id: 1,
@@ -103,7 +101,6 @@ const Profile = () => {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    // Simulate loading data
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -162,7 +159,7 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen dark:bg-songhunt-dark bg-white px-4 pb-16 sm:px-6 lg:px-8 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto pt-6">
         <ProfileHeader 
           username="Liraz"
           joinDate="October 2022"
