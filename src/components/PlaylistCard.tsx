@@ -24,15 +24,19 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Default placeholder images from Unsplash
+  // High-quality fallback images from Spotify album covers
   const placeholderImages = [
-    "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=500&auto=format&fit=crop&q=60",
-    "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&auto=format&fit=crop&q=60",
-    "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&auto=format&fit=crop&q=60",
-    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format&fit=crop&q=60"
+    "https://i.scdn.co/image/ab67616d0000b273533fd0b248052d04e6b732c0",
+    "https://i.scdn.co/image/ab67616d0000b2731eb7f3544e11371f29e90329",
+    "https://i.scdn.co/image/ab67616d0000b273c9af158f7aee15db6302b7a2",
+    "https://i.scdn.co/image/ab67616d0000b273d9194aa18fa4866eaeb7ce9c",
+    "https://i.scdn.co/image/ab67616d0000b273fa2f0a0323d9c57e7a21c92e",
+    "https://i.scdn.co/image/ab67616d0000b27358bf3c13ddd61b9fb166130b",
+    "https://i.scdn.co/image/ab67616d0000b2733b11010b1a5c4cd7e5fae71c",
+    "https://i.scdn.co/image/ab67616d0000b273ca56f17b9e93f4629c036d64"
   ];
 
-  // Take up to 4 cover images, or use placeholder images if needed
+  // Create a copy of the coverImages array
   const displayCovers = [...coverImages];
   
   // Fill with placeholders if less than 4
@@ -56,6 +60,10 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
                   src={cover} 
                   alt="" 
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // If image fails to load, replace with a fallback
+                    e.currentTarget.src = placeholderImages[index % placeholderImages.length];
+                  }}
                 />
               </div>
             ))}
