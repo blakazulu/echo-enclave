@@ -170,3 +170,67 @@
 .card-hover:hover {
   transform: scale(1.02);
 }
+
+/* Funky Fresh Styles */
+.shadow-glow {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.shadow-glow-purple {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+}
+
+.shadow-glow-blue {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+.shadow-glow-red {
+  box-shadow: 0 0 15px rgba(233, 30, 50, 0.5);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+@keyframes float-delay {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-7px) rotate(-5deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float-delay 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-spin-slow {
+  animation: spin 12s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: spin 10s linear infinite reverse;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.clip-path-circle-tl {
+  clip-path: circle(60% at 0% 0%);
+}
+
+.clip-path-circle-tr {
+  clip-path: circle(60% at 100% 0%);
+}
+
+.clip-path-circle-bl {
+  clip-path: circle(60% at 0% 100%);
+}
+
+.clip-path-circle-br {
+  clip-path: circle(60% at 100% 100%);
+}
