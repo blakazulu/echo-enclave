@@ -33,22 +33,15 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -98,6 +91,7 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
@@ -125,69 +119,22 @@
 }
 
 .glassmorphism {
-  @apply bg-white/10 dark:bg-black/20 backdrop-blur-lg border border-white/10 dark:border-white/5;
+  @apply bg-white/10 dark:bg-black/20 backdrop-blur-lg border border-white/20 dark:border-white/5 shadow-lg;
 }
 
-.profile-card {
-  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.3s ease;
-}
-
-.dark .profile-card {
-  background: linear-gradient(to bottom right, rgba(30, 30, 30, 0.7), rgba(15, 15, 15, 0.7));
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.profile-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-}
-
-.song-entry-hover {
-  transition: all 0.2s ease;
-}
-
-.song-entry-hover:hover {
-  transform: translateX(3px);
-}
-
-.tab-transition {
-  transition: all 0.3s ease;
-}
-
-.profile-gradient {
-  background: linear-gradient(120deg, #e91e32 0%, #d31428 100%);
+.glassmorphism-strong {
+  @apply bg-white/20 dark:bg-black/40 backdrop-blur-xl border border-white/30 dark:border-white/10 shadow-xl;
 }
 
 .card-hover {
-  transition: all 0.3s ease;
+  @apply transition-all duration-300;
 }
 
 .card-hover:hover {
-  transform: scale(1.02);
+  @apply transform scale-[1.03] shadow-xl;
 }
 
-/* Funky Fresh Styles */
-.shadow-glow {
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-}
-
-.shadow-glow-purple {
-  box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
-}
-
-.shadow-glow-blue {
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-}
-
-.shadow-glow-red {
-  box-shadow: 0 0 15px rgba(233, 30, 50, 0.5);
-}
-
+/* Funky Fresh Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0); }
   50% { transform: translateY(-10px) rotate(5deg); }
@@ -196,6 +143,11 @@
 @keyframes float-delay {
   0%, 100% { transform: translateY(0) rotate(0); }
   50% { transform: translateY(-7px) rotate(-5deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(233, 30, 50, 0)); }
+  50% { filter: drop-shadow(0 0 10px rgba(233, 30, 50, 0.5)); }
 }
 
 .animate-float {
@@ -207,6 +159,10 @@
   animation-delay: 1s;
 }
 
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
 .animate-spin-slow {
   animation: spin 12s linear infinite;
 }
@@ -215,10 +171,7 @@
   animation: spin 10s linear infinite reverse;
 }
 
-.animate-pulse-slow {
-  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
+/* Clip path shapes */
 .clip-path-circle-tl {
   clip-path: circle(60% at 0% 0%);
 }
@@ -233,4 +186,63 @@
 
 .clip-path-circle-br {
   clip-path: circle(60% at 100% 100%);
+}
+
+/* New gradient text & buttons */
+.text-gradient {
+  @apply bg-gradient-to-r from-songhunt-red to-purple-600 bg-clip-text text-transparent;
+}
+
+.bg-gradient {
+  @apply bg-gradient-to-r from-songhunt-red to-purple-600;
+}
+
+/* Additional animations */
+.animate-fade-in {
+  @apply opacity-0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-fade-in-delay {
+  @apply opacity-0;
+  animation: fadeIn 0.5s ease-out 0.2s forwards;
+}
+
+.animate-slide-up {
+  @apply opacity-0 translate-y-4;
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fun pattern backgrounds */
+.bg-pattern-dots {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.dark .bg-pattern-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+}
+
+.bg-pattern-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+.dark .bg-pattern-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
